@@ -2,6 +2,9 @@
 require 'db_conn.php';
 ?>
 
+<!-- THIS MIGHT HELP WITH THE UPDATE FUNCTION -->
+<!-- https://www.youtube.com/watch?v=72U5Af8KUpA -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,10 +46,10 @@ $list = $conn->query("SELECT * FROM list");
 
 <!-- EDIT ITEM DIALOG 2 -->
 <dialog id="edit-dialog">
-    <h3>Edit Person</h3>
+    <h3>Edit Person <?php echo $currentid ?></h3>
     <form action="app/update.php" method="POST" autocomplete="off">
-    <input class="required-field" type="text" name="fname" placeholder="<?php echo $item['fname'] ?>">
-    <input class="required-field" type="text" name="lname" placeholder="<?php echo $item['lname'] ?>">
+    <input class="required-field" type="text" name="fname" placeholder="<?php echo $currentid ?>">
+    <input class="required-field" type="text" name="lname" placeholder="<?php echo $currentid['lname'] ?>">
     <button type="submit">Save</button>
     <button formmethod="dialog">Cancel</button>
     </form>
@@ -102,7 +105,7 @@ $list = $conn->query("SELECT * FROM list");
         const id = $(this).attr('id');
         //const id = $(this).attr('data-todo-id');
         
-        $currentfname = id;
+        $currentid = $(this).attr('id');
 
         editDialog.showModal();
                 
